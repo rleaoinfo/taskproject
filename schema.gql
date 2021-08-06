@@ -1,0 +1,19 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type TaskDTO {
+  taskId: String
+  userId: String
+  description: String
+  enable: Boolean
+  when: String
+  array: String
+  created_at: String
+  updated_at: String
+}
+
+type Query {
+  hello: String!
+  task(name: String!): TaskDTO!
+}
