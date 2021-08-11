@@ -25,5 +25,8 @@ type TaskDTO {
 
 type Query {
   hello: String!
-  task(name: String!): TaskDTO!
+}
+
+type Mutation {
+  create(description: String!, userid: String!): TaskDTO!
 }

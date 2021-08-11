@@ -14,12 +14,13 @@ export class TaskResolver {
       return 'hello world';
     }
 
-    @Query(()=> TaskDTO)
-    async task(@Args('name') name: string) {
-      return await this.taskService.find(name);
+    @Mutation(()=> TaskDTO)
+    async create(@Args('userid') userid: string,
+                 @Args('description') description: string,){
+      const dataCreate =  await this.taskService.create(userid,description)
+      return dataCreate;
     }
 
-    
     //@ResolveField(returns => [RepoDTO])
     //async repos(@Parent() user:User){
     //  return this.userService.repoFind(user)
