@@ -19,8 +19,8 @@ type TaskDTO {
   enable: Boolean
   when: String
   status_history: StatusHistory
-  created_at: String
-  updated_at: String
+  created_at: DateTime
+  updated_at: DateTime
 }
 
 type Query {

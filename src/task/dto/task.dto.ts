@@ -17,7 +17,7 @@ export class TaskDTO {
     @Field({ nullable: true })
     status_history: StatusHistory;
     @Field({ nullable: true })
-    created_at: string;
+    created_at: Date;
     @Field({ nullable: true })
-    updated_at: string;
+    updated_at: Date;
 }

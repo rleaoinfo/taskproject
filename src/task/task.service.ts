@@ -14,7 +14,11 @@ export class TaskService {
   }
   
   async create(user : string, description : string): Promise<any> {
-    let datacreate = new Task
+    let datacreate = new Task;
+    datacreate.userId = user;
+    datacreate.description = description;
+    datacreate.enable = true;
+    datacreate.status_history.status = "PENDING";
     const dataCreate = await this.taskRepository.save(datacreate);
     return dataCreate;
 

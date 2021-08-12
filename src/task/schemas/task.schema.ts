@@ -28,7 +28,7 @@ export const TaskSchema = new Schema({
         status: String,
         when: Date
     }),
-    created_at: String,
-    updated_at: String,
+    created_at: Date,
+    updated_at: Date,
 }, { timestamps: { createdAt: 'created_at_mongo' } }
 ).index({ created_at_mongo: 1 }, { expire: '1h' });
