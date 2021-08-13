@@ -10,7 +10,7 @@ import { MongooseModule } from '@nestjs/mongoose';
         const port = configService.get('DB_PORT');
         const DBname = configService.get('DB_NAME');
         const url = 'mongodb://' + host + ":" + port + "/" + DBname;
-
+        console.log(url);
         return {
           uri: url,
           useNewUrlParser: true,

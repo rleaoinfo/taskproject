@@ -11,9 +11,9 @@ export class Task {
     enable: boolean;
     when: Date;
     status_history: StatusHistory;
-    created_at: string;
-    updated_at: string;
-    created_at_mongo: Date;
+    created_at?: Date;
+    updated_at?: Date;
+    created_at_mongo?: Date;
 }
 
 
@@ -28,7 +28,12 @@ export const TaskSchema = new Schema({
         status: String,
         when: Date
     }),
-    created_at: Date,
-    updated_at: Date,
-}, { timestamps: { createdAt: 'created_at_mongo' } }
-).index({ created_at_mongo: 1 }, { expire: '1h' });
+    created_at: {
+        type: Date,
+        default: Date.now,
+    },
+    updated_at: {
+        type: Date,
+        default: Date.now,
+    },
+}, { timestamps: { createdAt: 'created_at_mongo' } });
