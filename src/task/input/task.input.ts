@@ -15,7 +15,9 @@ export class TaskInput {
     @Field({ nullable: true })
     readonly when: string
     @Field({ nullable: true })
-    readonly status_history: StatusHistory;
+    readonly status: string
+    @Field({ nullable: true })
+    readonly status_history: [StatusHistory];
     @Field({ nullable: true })
     readonly created_at: Date;
     @Field({ nullable: true })

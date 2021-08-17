@@ -18,7 +18,8 @@ type TaskDTO {
   description: String
   enable: Boolean
   when: String
-  status_history: StatusHistory
+  status: String
+  status_history: [StatusHistory!]
   created_at: DateTime
   updated_at: DateTime
 }

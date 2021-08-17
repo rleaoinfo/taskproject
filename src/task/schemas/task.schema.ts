@@ -10,13 +10,17 @@ export class Task {
     description: string;
     enable: boolean;
     when: Date;
-    status_history: StatusHistory;
+    status: string;
+    status_history: [StatusHistory];
     created_at?: Date;
     updated_at?: Date;
     created_at_mongo?: Date;
 }
 
-
+const statushistoryschema = new Schema({
+    status: String,
+    when: Date
+}) 
 
 export const TaskSchema = new Schema({
     taskId: String,
@@ -24,10 +28,8 @@ export const TaskSchema = new Schema({
     description: String,
     enable: Boolean,
     when: Date,
-    status_history: new Schema({
-        status: String,
-        when: Date
-    }),
+    status: String,
+    status_history: [statushistoryschema],
     created_at: {
         type: Date,
         default: Date.now,

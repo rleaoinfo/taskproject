@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Task } from './schemas/task.schema';
+import { CreateNewTask } from './function/task.create';
 import { TaskRepository } from './task-repository';
 
 @Injectable()
@@ -14,19 +14,7 @@ export class TaskService {
   }
 
   async create(user: string, description: string): Promise<any> {
-    
-    const datacreate: Task = {
-      taskId: "teste",
-      userId: user,
-      description: description,
-      enable: true,
-      when: new Date(),
-      status_history: {
-        when: new Date(),
-        status: "PENDING",
-      },
-    }
-    const dataCreate = await this.taskRepository.save(datacreate);
+    const dataCreate = await this.taskRepository.save(CreateNewTask(user,description));
     return dataCreate;
 
   }
