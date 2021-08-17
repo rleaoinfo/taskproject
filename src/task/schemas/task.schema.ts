@@ -36,4 +36,4 @@ export const TaskSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-}, { timestamps: { createdAt: 'created_at_mongo' } });
+}, );

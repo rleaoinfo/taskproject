@@ -1,5 +1,7 @@
+import { ParseIntPipe } from '@nestjs/common';
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { TaskDTO } from './dto/task.dto';
+import { TaskValidationPipe } from './pipes/task.pipes';
 import { Task } from './schemas/task.schema';
 import { TaskService } from './task.service';
 
@@ -15,8 +17,8 @@ export class TaskResolver {
     }
 
     @Mutation(()=> TaskDTO)
-    async create(@Args('userid') userid: string,
-                 @Args('description') description: string,){
+    async create(@Args('userid',TaskValidationPipe) userid: string,
+                 @Args('description',TaskValidationPipe) description: string,){
       const dataCreate =  await this.taskService.create(userid,description)
       return dataCreate;
     }

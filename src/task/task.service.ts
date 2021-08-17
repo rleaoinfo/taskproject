@@ -12,24 +12,25 @@ export class TaskService {
     return datafind;
 
   }
-  
-  async create(user : string, description : string): Promise<any> {
+
+  async create(user: string, description: string): Promise<any> {
+    
     const datacreate: Task = {
       taskId: "teste",
       userId: user,
       description: description,
       enable: true,
-      when : new Date(),
+      when: new Date(),
       status_history: {
-          when: new Date(),
-          status: "PENDING",
+        when: new Date(),
+        status: "PENDING",
       },
-  }
+    }
     const dataCreate = await this.taskRepository.save(datacreate);
     return dataCreate;
 
   }
-  
+
 
 }
 
