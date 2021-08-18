@@ -7,8 +7,8 @@ export class TaskService {
   constructor(
     private readonly taskRepository: TaskRepository) { }
 
-  async find(taskid: string): Promise<any> {
-    const datafind = await this.taskRepository.findTask(taskid);
+  async find(userid: string): Promise<any> {
+    const datafind = await this.taskRepository.findall(userid);
     return datafind;
 
   }

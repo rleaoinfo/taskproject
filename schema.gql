@@ -26,6 +26,7 @@ type TaskDTO {
 
 type Query {
   hello: String!
+  findall(userid: String!): [TaskDTO!]!
 }
 
 type Mutation {

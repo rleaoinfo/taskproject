@@ -8,14 +8,15 @@ export class TaskRepository {
     constructor(
         @InjectModel(Task.name) private taskModel: Model<TaskDocument>,) { }
 
-    async findTask(userid: string): Promise<any> {
-        const mongoFind = await this.taskModel.findOne({ userId: userid }).exec();
+    async findall(userid: string): Promise<any> {
+        console.log(userid);
+        const mongoFind = await this.taskModel.find({ userId: userid, enable : true }).exec();
         return mongoFind;
 
     }
 
-    save(task: any) {
-        const newTask = new this.taskModel(task);
+    async save(task: any) {
+        const newTask = await new this.taskModel(task);
         return newTask.save();
     }
 

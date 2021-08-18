@@ -16,10 +16,16 @@ export class TaskResolver {
       return 'hello world';
     }
 
+    @Query(()=> [TaskDTO])
+    async findall(@Args('userid',TaskValidationPipe) userid: string){
+      const dataFind = await this.taskService.find(userid);
+      return dataFind; 
+    }
+
     @Mutation(()=> TaskDTO)
     async create(@Args('userid',TaskValidationPipe) userid: string,
                  @Args('description',TaskValidationPipe) description: string,){
-      const dataCreate =  await this.taskService.create(userid,description)
+      const dataCreate =  await this.taskService.create(userid,description);
       return dataCreate;
     }
 
