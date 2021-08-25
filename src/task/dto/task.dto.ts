@@ -13,7 +13,7 @@ export class TaskDTO {
     @Field({ nullable: true })
     enable: boolean;
     @Field({ nullable: true })
-    when: string
+    when: Date
     @Field({ nullable: true })
     status: string
     @Field(type => [StatusHistory],{ nullable: true })

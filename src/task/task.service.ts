@@ -19,6 +19,20 @@ export class TaskService {
 
   }
 
+  async findOne(userid: string , taskid: string){
+    const datafind = await this.taskRepository.find(userid,taskid);
+    return datafind;
+  }
+
+  async update(userid: string , taskid: string, description: string, when: Date){
+    const dataupdate = await this.taskRepository.update(userid,taskid,description,when);
+    return dataupdate;
+  }
+
+  async delete(userid: string , taskid: string){
+    const datadelete = await this.taskRepository.delete(userid,taskid);
+    return datadelete;
+  }
 
 }
 

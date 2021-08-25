@@ -18,3 +18,11 @@ export function CreateNewTask(user: string, description: string){
       }
     return datacreate;
 }
+
+export function CreateNewStatus(){
+  const statushistory = {
+    when: new Date(),
+    status: "PENDING",
+  }
+  return statushistory;
+}

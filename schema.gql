@@ -17,7 +17,7 @@ type TaskDTO {
   userId: String
   description: String
   enable: Boolean
-  when: String
+  when: DateTime
   status: String
   status_history: [StatusHistory!]
   created_at: DateTime
@@ -27,8 +27,11 @@ type TaskDTO {
 type Query {
   hello: String!
   findall(userid: String!): [TaskDTO!]!
+  find(taskid: String!, userid: String!): TaskDTO!
 }
 
 type Mutation {
   create(description: String!, userid: String!): TaskDTO!
+  update(when: DateTime, description: String, taskid: String!, userid: String!): TaskDTO!
+  delete(taskid: String!, userid: String!): TaskDTO!
 }
