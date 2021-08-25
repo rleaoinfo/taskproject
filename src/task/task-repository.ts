@@ -39,15 +39,71 @@ export class TaskRepository {
             return updatetask;
 
         }
-        //const updatetask = await this.taskModel.findOneAndUpdate({ userId: userid, taskId: taskid },{description: description,when: new Date()})
     }
 
     async delete(userid: string, taskid: string) {
         const deleted = await this.taskModel.findOneAndUpdate({ userId: userid, taskId: taskid, enable: true }, { enable: false });
-        if(deleted === null){
+        if (deleted === null) {
             throw new BadRequestException('Task já está deletada')
         }
         return deleted;
+    }
+
+    async updatestatus(taskid: string, newStatus: string) {
+        const task = await this.taskModel.findOne({ taskId: taskid, enable: true }).exec()
+        if (task === null) {
+            throw new BadRequestException('Task não encontrada')
+        } else {
+            const taskJson = task.toJSON() as Task
+            console.log(newStatus, taskJson.status)
+            if (newStatus === "COMPLETED") {
+                if (taskJson.status === "COMPLETED" || taskJson.status === "CANCELED") {
+                    throw new BadRequestException('Task não pode ser modificada')
+                } else {
+                    const updated = await task.updateOne({ status: newStatus }, { new: true })
+                    console.log(task)
+                    return task
+                }
+            }
+            else if (newStatus === "PENDING") {
+                if (taskJson.status === "COMPLETED" || taskJson.status === "CANCELED") {
+                    const updated = await task.updateOne({ status: newStatus }, { new: true })
+                    console.log(updated)
+                    return updated
+                } else {
+                    throw new BadRequestException('Task não pode ser modificada')
+                }
+            }
+            else if (newStatus === "CANCELED") {
+                console.log("aqui")
+                if (taskJson.status === "CANCELED") {
+                    throw new BadRequestException('Task não pode ser modificada')
+                }
+                else {
+                    const updated = await task.updateOne({ status: newStatus }, { new: true })
+                    return updated
+                }
+            }
+            else{
+                throw new BadRequestException('Status não existente')
+            }
+        }
+    }
+
+    async updatestatusarray(taskid: string, newStatus: string) {
+        const task = await this.taskModel.findOne({ taskId: taskid, enable: true }).exec()
+        if (task === null) {
+            throw new BadRequestException('Task não encontrada')
+        } else {
+            const taskJson = task.toJSON() as Task
+            if (taskJson.status === "COMPLETED" || taskJson.status === " CANCELED") {
+                task.updateOne({ status: "PENDING" })
+                return task;
+            } else {
+                throw new BadRequestException('Task não pode ser modificada')
+            }
+        }
+        //const updatetask = await this.taskModel.findOneAndUpdate({ userId: userid, taskId: taskid },{description: description,when: new Date()})
     }
 
 }

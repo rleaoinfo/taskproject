@@ -34,5 +34,10 @@ export class TaskService {
     return datadelete;
   }
 
+  async updatestatus(taskid: string, newStatus: string){
+    const dataupdate = await this.taskRepository.updatestatus(taskid,newStatus);
+    return dataupdate;
+  }
+
 }
 

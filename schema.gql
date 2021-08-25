@@ -34,4 +34,5 @@ type Mutation {
   create(description: String!, userid: String!): TaskDTO!
   update(when: DateTime, description: String, taskid: String!, userid: String!): TaskDTO!
   delete(taskid: String!, userid: String!): TaskDTO!
+  updatestatus(newstatus: String!, taskid: String!): TaskDTO!
 }

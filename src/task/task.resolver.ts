@@ -52,10 +52,13 @@ export class TaskResolver {
     return dataDeleted;
   }
 
-  //@ResolveField(returns => [RepoDTO])
-  //async repos(@Parent() user:User){
-  //  return this.userService.repoFind(user)
-  //}
+  @Mutation(() => TaskDTO)
+  async updatestatus(@Args('taskid', TaskValidationPipe) userid: string,
+    @Args('newstatus', TaskValidationPipe) newstatus: string,) {
+    const dataUpdate = await this.taskService.updatestatus(userid, newstatus);
+    return dataUpdate;
+  }
+
 
 }
 
